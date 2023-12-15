@@ -11,9 +11,9 @@ import (
 	"io"
 	"strconv"
 
-	pdfcontent "github.com/unidoc/unipdf/contentstream"
-	pdfcore "github.com/unidoc/unipdf/core"
-	pdf "github.com/unidoc/unipdf/model"
+	pdfcontent "github.com/unidoc/unipdf/v3/contentstream"
+	pdfcore "github.com/unidoc/unipdf/v3/core"
+	pdf "github.com/unidoc/unipdf/v3/model"
 )
 
 var xObjectImages = 0
