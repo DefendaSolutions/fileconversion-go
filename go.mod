@@ -1,4 +1,4 @@
-module github.com/IntelligenceX/fileconversion
+module github.com/DefendaSolutions/fileconversion-go
 
 go 1.21.5
 
