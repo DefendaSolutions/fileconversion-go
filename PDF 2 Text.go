@@ -9,18 +9,31 @@ This code uses the commercial library UniDoc https://unidoc.io/ to extract text 
 package fileconversion
 
 import (
-	"errors"
+	"bytes"
 	"io"
 	"time"
+
+	"github.com/ledongthuc/pdf"
 )
 
-// PDFListContentStreams writes all text streams in a PDF to the writer
-// It returns the number of characters attempted written (excluding "Page N" and new-lines) and an error, if any. It can be used to determine whether any text was extracted.
-// The parameter size is the max amount of bytes (not characters) to write out.
-func PDFListContentStreams(f io.ReadSeeker, w io.Writer, size int64) (written int64, err error) {
+// PDF2Text returns the plaintext content of the PDF file
+// The parameter size is the PDF file size
+func PDF2Text(f io.ReaderAt, size int64) (string, error) {
 
-	return 0, errors.New("Unhandled PDF 2 Text")
+	r, err := pdf.NewReader(f, size)
+	if err != nil {
+		return "", err
+	}
 
+	b, err := r.GetPlainText()
+	if err != nil {
+		return "", err
+	}
+
+	buff := bytes.NewBuffer([]byte{})
+	_, err = buff.ReadFrom(b)
+
+	return buff.String(), err
 }
 
 // PDFGetCreationDate tries to get the creation date
