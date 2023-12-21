@@ -30,7 +30,7 @@ Picture related functions:
 To download this library:
 
 ```
-go get -u github.com/IntelligenceX/fileconversion
+go get -u github.com/DefendaSolutions/fileconversion-go
 ```
 
 And then use it like:
@@ -43,7 +43,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/IntelligenceX/fileconversion"
+	"github.com/DefendaSolutions/fileconversion-go"
 )
 
 const sizeLimit = 2 * 1024 * 1024 // 2 MB
@@ -120,7 +120,6 @@ go get -u github.com/ssor/bom
 go get -u github.com/levigross/exp-html
 go get -u github.com/neofight/mobi/convert
 go get -u github.com/neofight/mobi/headers
-go get -u github.com/unidoc/unipdf
 go get -u github.com/nfnt/resize
 go get -u github.com/tealeg/xlsx
 go get -u gopkg.in/xmlpath.v2
