@@ -3,6 +3,7 @@ module github.com/DefendaSolutions/fileconversion-go
 go 1.21.5
 
 require (
+	github.com/IntelligenceX/fileconversion v0.0.0-20191030112448-1b64e2d06ace
 	github.com/PuerkitoBio/goquery v1.8.1
 	github.com/extrame/goyymmdd v0.0.0-20210114090516-7cc815f00d1a
 	github.com/levigross/exp-html v0.0.0-20120902181939-8df60c69a8f5
@@ -17,7 +18,7 @@ require (
 	github.com/taylorskalyo/goreader v0.0.0-20230626212555-e7f5644f8115
 	github.com/tealeg/xlsx v1.0.5
 	github.com/ulikunitz/xz v0.5.11
-	github.com/unidoc/unipdf/v3 v3.52.0
+	github.com/unidoc/unipdf/v3 v3.53.0
 	golang.org/x/image v0.14.0
 	golang.org/x/net v0.19.0
 	golang.org/x/text v0.14.0

@@ -17,14 +17,11 @@ import (
 	"github.com/unidoc/unipdf/v3/core"
 	"github.com/unidoc/unipdf/v3/extractor"
 	pdf "github.com/unidoc/unipdf/v3/model"
-
-	"github.com/unidoc/unipdf/v3/common/license"
 )
 
 // InitPDFLicense initializes the PDF license
 func InitPDFLicense(key, name string) {
 	// load the unidoc license (v3)
-	license.SetLicenseKey(key, name)
 }
 
 // PDFListContentStreams writes all text streams in a PDF to the writer

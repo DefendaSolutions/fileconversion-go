@@ -1,3 +1,5 @@
+github.com/IntelligenceX/fileconversion v0.0.0-20191030112448-1b64e2d06ace h1:fDRlMKlObDJ9quEH+5wmnvTPhUCZgB2hInGV5XQrifs=
+github.com/IntelligenceX/fileconversion v0.0.0-20191030112448-1b64e2d06ace/go.mod h1:yplSo+6ZAI1Vo5ZZ2lnm1vGarL4C3uIVlT04QRsp9f4=
 github.com/PuerkitoBio/goquery v1.8.1 h1:uQxhNlArOIdbrH1tr0UXwdVFgDcZDrZVdcpygAcwmWM=
 github.com/PuerkitoBio/goquery v1.8.1/go.mod h1:Q8ICL1kNUJ2sXGoAhPGUdYDJvgQgHzJsnnd3H7Ho5jQ=
 github.com/andybalholm/cascadia v1.3.1 h1:nhxRkql1kdYCc8Snf7D5/D3spOX+dBgjA6u8x004T2c=
@@ -65,8 +67,8 @@ github.com/unidoc/pkcs7 v0.2.0 h1:0Y0RJR5Zu7OuD+/l7bODXARn6b8Ev2G4A8lI4rzy9kg=
 github.com/unidoc/pkcs7 v0.2.0/go.mod h1:UEzOZUEpJfDpywVJMUT8QiugqEZC29pDq7kdIZhWCr8=
 github.com/unidoc/timestamp v0.0.0-20200412005513-91597fd3793a h1:RLtvUhe4DsUDl66m7MJ8OqBjq8jpWBXPK6/RKtqeTkc=
 github.com/unidoc/timestamp v0.0.0-20200412005513-91597fd3793a/go.mod h1:j+qMWZVpZFTvDey3zxUkSgPJZEX33tDgU/QIA0IzCUw=
-github.com/unidoc/unipdf/v3 v3.52.0 h1:yhgUhqDfT2oBiidsixpWFIVF1tZf5dvKq7rkMoXmRQk=
-github.com/unidoc/unipdf/v3 v3.52.0/go.mod h1:nsyu8C7iOhmASFPmYkwQ6nFhSnIpHOKxQeDfaS80m38=
+github.com/unidoc/unipdf/v3 v3.53.0 h1:xUgG/MH2iUHaar554w6OrL0qTKNy4AWzb19z0RyIExs=
+github.com/unidoc/unipdf/v3 v3.53.0/go.mod h1:sEXO/chguUL1RAtyPnGos2BbCBGjL9dusmdT5b13eBg=
 github.com/unidoc/unitype v0.2.1 h1:x0jMn7pB/tNrjEVjy3Ukpxo++HOBQaTCXcTYFA6BH3w=
 github.com/unidoc/unitype v0.2.1/go.mod h1:mafyug7zYmDOusqa7G0dJV45qp4b6TDAN+pHN7ZUIBU=
 github.com/yuin/goldmark v1.4.13/go.mod h1:6yULJ656Px+3vBD8DxQVa3kxgyrAnzto9xy5taEt/CY=
