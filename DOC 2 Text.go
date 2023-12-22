@@ -506,7 +506,7 @@ func getPcdt(clx []byte, pcdtOffset int) (*pcdt, error) {
 	pcds := make([]pcd, numPcds)
 	for i := 0; i < numPcds; i++ {
 		pcdOffset := pcdStart + i*pcdSize
-		if pcdOffset < 0 || pcdOffset+pcdSize >= len(clx) {
+		if pcdOffset < 0 || pcdOffset+pcdSize > len(clx) {
 			return nil, errInvalidPcdt
 		}
 		pcds[i] = *parsePcd(clx[pcdOffset : pcdOffset+pcdSize])
