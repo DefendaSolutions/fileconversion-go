@@ -14,6 +14,8 @@ import (
 	"encoding/xml"
 	"fmt"
 	"io"
+	"os"
+	"path/filepath"
 	"strings"
 )
 
@@ -103,6 +105,8 @@ func openWordFile(file io.ReaderAt, size int64) (string, error) {
 		return "", err
 	}
 
+	retvalue := ""
+
 	// Iterate through the files in the archive,
 	// find document.xml
 	for _, f := range r.File {
@@ -118,11 +122,16 @@ func openWordFile(file io.ReaderAt, size int64) (string, error) {
 			if err != nil {
 				return "", err
 			}
-			return fmt.Sprintf("%s", doc), nil
+			retvalue += fmt.Sprintf("%s", doc)
+		}
+
+		// ! others .docx in the word/ folder should be parsed as ZIP to handle nested Word documents
+		if strings.ToLower(filepath.Ext(f.Name)) == ".docx" {
+			fmt.Fprintf(os.Stderr, "Unhandled nested %s in .docx file\n", f.Name)
 		}
 	}
 
-	return "", nil
+	return retvalue, nil
 }
 
 // IsFileDOCX checks if the data indicates a DOCX file
