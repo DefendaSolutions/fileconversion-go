@@ -23,7 +23,7 @@ import (
 
 // WordDocument is a full word doc
 type WordDocument struct {
-	Paragraphs []WordParagraph
+	Paragraphs []WordParagraph `xml:"p"`
 }
 
 // WordParagraph is a single paragraph
@@ -45,6 +45,7 @@ type WordRow struct {
 
 // WordHyperlink ...
 type WordHyperlink struct {
+	Id   string    `xml:"id,attr"`
 	Rows []WordRow `xml:"r"`
 }
 
