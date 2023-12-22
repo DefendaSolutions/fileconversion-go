@@ -1,7 +1,7 @@
 package xls
 
 import (
-	"io/ioutil"
+	"os"
 	"path"
 	"path/filepath"
 	"strings"
@@ -10,7 +10,13 @@ import (
 
 func TestIssue47(t *testing.T) {
 	testdatapath := "testdata"
-	files, err := ioutil.ReadDir(testdatapath)
+
+	dir, err := os.Open(testdatapath)
+	if err != nil {
+		t.Fatalf("Cant open testdata directory: %s", err)
+	}
+
+	files, err := dir.ReadDir(0)
 	if err != nil {
 		t.Fatalf("Cant read testdata directory contents: %s", err)
 	}

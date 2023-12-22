@@ -4,7 +4,6 @@ import (
 	"archive/zip"
 	"errors"
 	"io"
-	"io/ioutil"
 	"strings"
 )
 
@@ -51,7 +50,7 @@ func newFile(z *zip.Reader, closer io.Closer) (*File, error) {
 		return nil, err
 	}
 
-	b, err := ioutil.ReadAll(mf)
+	b, err := io.ReadAll(mf)
 	mf.Close()
 	if err != nil {
 		if closer != nil {

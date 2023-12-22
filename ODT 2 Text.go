@@ -13,7 +13,6 @@ import (
 	"archive/zip"
 	"errors"
 	"io"
-	"io/ioutil"
 
 	"github.com/IntelligenceX/fileconversion/html2text"
 )
@@ -36,7 +35,7 @@ func ODT2Text(file io.ReaderAt, size int64, writer io.Writer, limit int64) (writ
 	return
 }
 
-//odt zip struct
+// odt zip struct
 type odt struct {
 	zipFileReader *zip.Reader
 	Files         []*zip.File
@@ -64,7 +63,7 @@ func odtNewReader(file io.ReaderAt, size int64) (*odt, error) {
 	return &odtDoc, nil
 }
 
-//Read all files contents
+// Read all files contents
 func (d *odt) retrieveFileContents(filename string) ([]byte, error) {
 	var file *zip.File
 	for _, f := range d.Files {
@@ -82,7 +81,7 @@ func (d *odt) retrieveFileContents(filename string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	return ioutil.ReadAll(reader)
+	return io.ReadAll(reader)
 }
 
 func (d *odt) GetTxt() (content string, err error) {

@@ -13,7 +13,6 @@ import (
 	"compress/bzip2"
 	"compress/gzip"
 	"io"
-	"io/ioutil"
 	"time"
 
 	"github.com/nwaples/rardecode"
@@ -26,7 +25,7 @@ func DecompressFile(data []byte) (decompressed []byte, valid bool) {
 	// Try GZ
 	if gr, err := gzip.NewReader(bytes.NewBuffer(data)); err == nil {
 		defer gr.Close()
-		decompressed, err = ioutil.ReadAll(gr)
+		decompressed, err = io.ReadAll(gr)
 		if err == nil {
 			return decompressed, true
 		}
@@ -34,14 +33,14 @@ func DecompressFile(data []byte) (decompressed []byte, valid bool) {
 
 	// BZ, BZ2
 	br := bzip2.NewReader(bytes.NewBuffer(data))
-	decompressed, err := ioutil.ReadAll(br)
+	decompressed, err := io.ReadAll(br)
 	if err == nil {
 		return decompressed, true
 	}
 
 	// XZ
 	if xr, err := xz.NewReader(bytes.NewBuffer(data)); err == nil {
-		decompressed, err = ioutil.ReadAll(xr)
+		decompressed, err = io.ReadAll(xr)
 		if err == nil {
 			return decompressed, true
 		}
@@ -61,7 +60,7 @@ func ContainerExtractFiles(data []byte, callback func(name string, size int64, d
 				continue
 			}
 
-			data2, err := ioutil.ReadAll(fileReader)
+			data2, err := io.ReadAll(fileReader)
 			fileReader.Close()
 			if err != nil {
 				// If the file is encrypted with a password, this fails with error "4" here.
@@ -81,7 +80,7 @@ func ContainerExtractFiles(data []byte, callback func(name string, size int64, d
 			if err == io.EOF || err != nil { // break if end of archive or other error returned
 				break
 			} else if err == nil && !hdr.IsDir {
-				if data2, err := ioutil.ReadAll(rc); err == nil {
+				if data2, err := io.ReadAll(rc); err == nil {
 					callback(hdr.Name, hdr.UnPackedSize, hdr.CreationTime, data2)
 				}
 			}
@@ -95,7 +94,7 @@ func ContainerExtractFiles(data []byte, callback func(name string, size int64, d
 			if err == io.EOF || err != nil { // break if end of archive or other error returned
 				break // End of archive
 			} else if err == nil && !hdr.IsEmptyFile {
-				if data2, err := ioutil.ReadAll(sz); err == nil {
+				if data2, err := io.ReadAll(sz); err == nil {
 					callback(hdr.Name, int64(len(data2)), hdr.CreatedAt, data2)
 				}
 			}
@@ -121,9 +120,9 @@ func ContainerExtractFiles(data []byte, callback func(name string, size int64, d
 		switch hdr.Typeflag {
 		case tar.TypeDir:
 			// directories are ignored
-		case tar.TypeReg, tar.TypeRegA:
+		case tar.TypeReg:
 			// file
-			data2, err := ioutil.ReadAll(tr)
+			data2, err := io.ReadAll(tr)
 			if err != nil {
 				continue
 			}

@@ -9,7 +9,7 @@ package fileconversion
 import (
 	"bytes"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"testing"
 )
@@ -105,7 +105,7 @@ func TestCSV(t *testing.T) {
 	}
 	defer file.Close()
 
-	content, _ := ioutil.ReadAll(file)
+	content, _ := io.ReadAll(file)
 
 	IsCSV(content)
 }
@@ -157,12 +157,16 @@ func TestPD2Text(t *testing.T) {
 		return
 	}
 
+	stat, err := file.Stat()
+	if err != nil {
+		return
+	}
+
 	defer file.Close()
 
-	buffer := bytes.NewBuffer(make([]byte, 0, 2*1024))
-	PDFListContentStreams(file, buffer, 2*1024)
+	str, err := PDF2Text(file, stat.Size())
 
-	fmt.Println(buffer.String())
+	fmt.Println(str)
 }
 
 func TestODTText(t *testing.T) {

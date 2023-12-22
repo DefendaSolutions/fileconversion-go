@@ -14,7 +14,6 @@ import (
 	"encoding/xml"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"strings"
 )
 
@@ -115,7 +114,7 @@ func openWordFile(file io.ReaderAt, size int64) (string, error) {
 		}
 		defer rc.Close()
 		if f.Name == "word/document.xml" {
-			doc, err := ioutil.ReadAll(rc)
+			doc, err := io.ReadAll(rc)
 			if err != nil {
 				return "", err
 			}
