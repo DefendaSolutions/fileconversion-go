@@ -28,8 +28,9 @@ type WordDocument struct {
 
 // WordParagraph is a single paragraph
 type WordParagraph struct {
-	Style WordStyle `xml:"pPr>pStyle"`
-	Rows  []WordRow `xml:"r"`
+	Style      WordStyle       `xml:"pPr>pStyle"`
+	Rows       []WordRow       `xml:"r"`
+	Hyperlinks []WordHyperlink `xml:"hyperlink"`
 }
 
 // WordStyle ...
@@ -42,14 +43,29 @@ type WordRow struct {
 	Text string `xml:"t"`
 }
 
+// WordHyperlink ...
+type WordHyperlink struct {
+	Rows []WordRow `xml:"r"`
+}
+
 // AsText returns all text in the document
 func (w WordDocument) AsText() string {
 	text := ""
 	for _, v := range w.Paragraphs {
-		for _, rv := range v.Rows {
-			text += rv.Text
+		if len(v.Rows) > 0 {
+			for _, rv := range v.Rows {
+				text += rv.Text
+			}
+			text += "\n"
 		}
-		text += "\n"
+		if len(v.Hyperlinks) > 0 {
+			for _, hl := range v.Hyperlinks {
+				for _, rv := range hl.Rows {
+					text += rv.Text
+				}
+			}
+			text += "\n"
+		}
 	}
 	return text
 }
