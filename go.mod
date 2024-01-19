@@ -18,17 +18,17 @@ require (
 	github.com/taylorskalyo/goreader v0.0.0-20230626212555-e7f5644f8115
 	github.com/tealeg/xlsx v1.0.5
 	github.com/ulikunitz/xz v0.5.11
-	golang.org/x/image v0.14.0
-	golang.org/x/net v0.19.0
+	golang.org/x/image v0.15.0
+	golang.org/x/net v0.20.0
 	golang.org/x/text v0.14.0
 	gopkg.in/xmlpath.v2 v2.0.0-20150820204837-860cbeca3ebc
 )
 
 require (
-	github.com/andybalholm/cascadia v1.3.1 // indirect
-	github.com/ledongthuc/pdf v0.0.0-20220302134840-0c2507a12d80
-	github.com/mattn/go-runewidth v0.0.14 // indirect
-	github.com/richardlehane/msoleps v1.0.1 // indirect
+	github.com/andybalholm/cascadia v1.3.2 // indirect
+	github.com/ledongthuc/pdf v0.0.0-20240102091924-f3e9b24a5eaa
+	github.com/mattn/go-runewidth v0.0.15 // indirect
+	github.com/richardlehane/msoleps v1.0.3 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect
 	github.com/saracen/go7z-fixtures v0.0.0-20190623165746-aa6b8fba1d2f // indirect
 	github.com/saracen/solidblock v0.0.0-20190426153529-45df20abab6f // indirect
