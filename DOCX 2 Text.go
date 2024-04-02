@@ -134,17 +134,34 @@ func openWordFile(file io.ReaderAt, size int64) (string, error) {
 			return "", err
 		}
 		defer rc.Close()
+
 		if f.Name == "word/document.xml" {
+      // main word document
+
 			doc, err := io.ReadAll(rc)
 			if err != nil {
 				return "", err
 			}
 			retvalue += fmt.Sprintf("%s", doc)
-		}
 
-		// ! others .docx in the word/ folder should be parsed as ZIP to handle nested Word documents
-		if strings.ToLower(filepath.Ext(f.Name)) == ".docx" {
-			fmt.Fprintf(os.Stderr, "Unhandled nested %s in .docx file\n", f.Name)
+		} else if strings.ToLower(filepath.Ext(f.Name)) == ".docx" {
+      // other docx files, nested word documents
+
+      buff := bytes.NewBuffer([]byte{})
+      _, err := io.Copy(buff, rc)
+      if err != nil {
+        fmt.Fprintf(os.Stderr, "Error while reading %s\n", f.Name)
+        fmt.Fprintln(os.Stderr, err)
+      } else {
+        readerAt := bytes.NewReader(buff.Bytes())
+        nested_str, err := openWordFile(readerAt, size)
+        if err != nil {
+          fmt.Fprintf(os.Stderr, "Error while reading %s\n", f.Name)
+          fmt.Fprintln(os.Stderr, err)
+        } else {
+          retvalue += nested_str
+        }
+      }
 		}
 	}
 
